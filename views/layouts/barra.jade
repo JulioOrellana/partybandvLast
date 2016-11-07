@@ -1,0 +1,298 @@
+!!! 5
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title Barra
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    link(href='/css/bootstrap.css', rel='stylesheet')
+    style(type='text/css')
+      * {
+        box-sizing: border-box;
+      }
+      body {
+      background-color:#9adbce;
+      padding-top: 20px;
+      padding-bottom: 60px;
+      }
+      /* Custom container */
+      .container {
+      margin: 0 auto;
+      max-width: 1000px;
+      }
+      .container > hr {
+      margin: 60px 0;
+      }
+      /* Main marketing message and sign up button */
+      .jumbotron {
+      margin: 80px 0;
+      text-align: center;
+      }
+      .jumbotron h1 {
+      font-size: 100px;
+      line-height: 1;
+      }
+      .jumbotron .lead {
+      font-size: 24px;
+      line-height: 1.25;
+      }
+      .jumbotron .btn {
+      font-size: 21px;
+      padding: 14px 24px;
+      }
+      /* Supporting marketing content */
+      .marketing {
+      margin: 60px 0;
+      }
+      .marketing p + h4 {
+      margin-top: 28px;
+      }
+      /* Customize the navbar links to be fill the entire space of the .navbar */
+      .navbar .navbar-inner {
+      padding: 0;
+      }
+      .navbar .nav {
+      margin: 0;
+      }
+      .navbar .nav li {
+      display: table-cell;
+      width: 1%;
+      float: none;
+      }
+      .navbar .nav li a {
+      font-weight: bold;
+      text-align: center;
+      border-left: 1px solid rgba(255,255,255,.75);
+      border-right: 1px solid rgba(0,0,0,.1);
+      }
+      .navbar .nav li:first-child a {
+      border-left: 0;
+      border-radius: 3px 0 0 3px;
+      }
+      .navbar .nav li:last-child a {
+      border-right: 0;
+      border-radius: 0 3px 3px 0;
+      }
+      .span4 p{
+        margin-top:20px;
+        text-align:center;
+        font-size:30px;
+      }
+      .span4{
+        height: auto;
+        padding: 1.9em 0.9em 1.6em;
+        pointer-events: auto;
+        text-align: center;
+        color: #173d50;
+        background-color: rgba(23, 61, 80, 0.06);
+      }
+      select{
+        width:3.5em;
+        margin-top:10px;
+      }
+      #fixedbutton{
+        margin:auto;
+        height:50px;
+        width:100%;
+        margin-top:30px;
+      }
+    link(href='/css/bootstrap-responsive.css', rel='stylesheet')
+    link(rel='apple-touch-icon-precomposed', sizes='144x144', href='/ico/apple-touch-icon-144-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', sizes='114x114', href='/ico/apple-touch-icon-114-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', sizes='72x72', href='/ico/apple-touch-icon-72-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', href='/ico/apple-touch-icon-57-precomposed.png')
+    link(rel='shortcut icon', href='/ico/favicon.png')
+  body
+    .container
+      .masthead
+        ul.nav.nav-pills.pull-right
+          li
+            a(href='/') Home
+          li.active
+            a(href='/barra') Barra
+          li
+            a(href='#') Administración
+          li
+            a(href='/signin') Usuarios
+        h3.muted PartyBand
+      .jumbotron
+        h1 ¡Barra del Bar!
+        p.lead
+          | Aquí encontrarás todos los bebestibles del bar.
+        <!--a.btn.btn-large.btn-success(href='#') Get started today-->
+      form(name='drinks-checkout',method='post')  
+        hr
+        .row-fluid
+          .span4
+            img(src='/img/drinks/#{data[0].nombre}.png', width='100')
+            p.nombre #{data[0].nombre} 
+            p $#{data[0].valor}
+            p.desc 
+              i "#{data[0].descripcion}"
+            p #{data[0].categoria}
+            select(name='dropdown')
+              -for(var i=1;i<=5;i++)
+                option(value='#{i}') #{i} 
+          .span4
+            img(src='/img/drinks/#{data[1].nombre}.png', width='100')
+            p.nombre #{data[1].nombre} 
+            p $#{data[1].valor}
+            p.desc 
+              i "#{data[1].descripcion}"
+            p #{data[1].categoria}
+            select(name='dropdown')
+              -for(var i=1;i<=5;i++)
+                option(value='#{i}') #{i} 
+          .span4
+            img(src='/img/drinks/#{data[2].nombre}.png', width='100')
+            p.nombre #{data[2].nombre} 
+            p $#{data[2].valor}
+            p.desc 
+              i "#{data[2].descripcion}"
+            select(name='dropdown')
+              -for(var i=1;i<=5;i++)
+                option(value='#{i}') #{i} 
+        hr
+        .row-fluid
+          .span4
+            img(src='/img/drinks/#{data[3].nombre}.png', width='100')
+            p.nombre #{data[3].nombre} 
+            p $#{data[3].valor}
+            p.desc 
+              i "#{data[3].descripcion}"
+            select(name='dropdown')
+              -for(var i=1;i<=5;i++)
+                option(value='#{i}') #{i} 
+          .span4
+            img(src='/img/drinks/#{data[4].nombre}.png', width='100')
+            p.nombre #{data[4].nombre} 
+            p $#{data[4].valor}
+            p.desc 
+              i "#{data[4].descripcion}"
+            select(name='dropdown')
+              -for(var i=1;i<=5;i++)
+                option(value='#{i}') #{i} 
+          .span4
+            img(src='/img/drinks/#{data[5].nombre}.png', width='100')
+            p.nombre #{data[5].nombre} 
+            p $#{data[5].valor}
+            p.desc 
+              i "#{data[5].descripcion}"
+            select(name='dropdown')
+              -for(var i=1;i<=5;i++)
+                option(value='#{i}') #{i} 
+        hr
+        .row-fluid
+          .span4
+            img(src='/img/drinks/#{data[6].nombre}.png', width='100')
+            p.nombre #{data[6].nombre} 
+            p $#{data[6].valor}
+            p.desc 
+              i "#{data[6].descripcion}"
+            select(name='dropdown')
+              -for(var i=1;i<=5;i++)
+                option(value='#{i}') #{i} 
+          .span4
+            img(src='/img/drinks/#{data[7].nombre}.png', width='100')
+            p.nombre #{data[7].nombre} 
+            p $#{data[7].valor}
+            p.desc 
+              i "#{data[7].descripcion}"
+            select(name='dropdown')
+              -for(var i=1;i<=5;i++)
+                option(value='#{i}') #{i} 
+          .span4
+            img(src='/img/drinks/#{data[8].nombre}.png', width='100')
+            p.nombre #{data[8].nombre} 
+            p $#{data[8].valor}
+            p.desc 
+              i "#{data[8].descripcion}"
+            select(name='dropdown')
+              -for(var i=1;i<=5;i++)
+                option(value='#{i}') #{i} 
+        hr
+        .row-fluid
+          .span4
+            img(src='/img/drinks/#{data[9].nombre}.png', width='100')
+            p.nombre #{data[9].nombre} 
+            p $#{data[9].valor}
+            p.desc 
+              i "#{data[9].descripcion}"
+            select(name='dropdown')
+              -for(var i=1;i<=5;i++)
+                option(value='#{i}') #{i} 
+          .span4
+            img(src='/img/drinks/#{data[10].nombre}.png', width='100')
+            p.nombre #{data[10].nombre} 
+            p $#{data[10].valor}
+            p.desc 
+              i "#{data[10].descripcion}" 
+            select(name='dropdown')
+              -for(var i=1;i<=5;i++)
+                option(value='#{i}') #{i}                  
+          .span4
+            img(src='/img/drinks/#{data[11].nombre}.png', width='100')
+            p.nombre #{data[11].nombre} 
+            p $#{data[11].valor}
+            p.desc 
+              i "#{data[11].descripcion}"  
+            select(name='dropdown')
+              -for(var i=1;i<=5;i++)
+                option(value='#{i}') #{i}            
+        hr
+        .row-fluid
+          .span4
+            img(src='/img/drinks/#{data[12].nombre}.png', width='100')
+            p.nombre #{data[12].nombre} 
+            p $#{data[12].valor}
+            p.desc 
+              i "#{data[12].descripcion}" 
+            select(name='dropdown')
+              -for(var i=1;i<=5;i++)
+                option(value='#{i}') #{i}                    
+          .span4
+            img(src='/img/drinks/#{data[13].nombre}.png', width='100')
+            p.nombre #{data[13].nombre}
+            p $#{data[13].valor}
+            p.desc 
+              i "#{data[13].descripcion}"
+            select(name='dropdown')
+              -for(var i=1;i<=5;i++)
+                option(value='#{i}') #{i} 
+          .span4
+            img(src='/img/drinks/#{data[14].nombre}.png', width='100')
+            p.nombre #{data[14].nombre} 
+            p $#{data[14].valor}
+            p.desc 
+              i "#{data[14].descripcion}"
+            select(name='dropdown')
+              -for(var i=1;i<=5;i++)
+                option(value='#{i}') #{i} 
+        hr
+        .row-fluid
+          .span4
+            img(src='/img/drinks/#{data[15].nombre}.png', width='100')
+            p.nombre #{data[15].nombre} 
+            p $#{data[15].valor}
+            p.desc 
+              i "#{data[15].descripcion}"
+            select(name='dropdown')
+              -for(var i=1;i<=5;i++)
+                option(value='#{i}') #{i} 
+          .span4
+            img(src='/img/drinks/#{data[16].nombre}.png', width='100')
+            p.nombre #{data[16].nombre} 
+            p $#{data[16].valor}
+            p.desc 
+              i "#{data[16].descripcion}"
+            select(name='dropdown')
+              -for(var i=1;i<=5;i++)
+                option(value='#{i}') #{i} 
+        hr
+        a.btn.btn-large.btn-success#fixedbutton(href='#') Checkout      
+      
+      hr
+      .footer
+        p © PartyBand 2016
+  include ../partials/scripts
