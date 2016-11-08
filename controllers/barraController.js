@@ -26,3 +26,13 @@ exports.getAllDrinks = function getAllDrinks()
                       console.log("Error al intentar recuperar datos.");
                   });
 }
+
+exports.getSingleValue = function getSingleValue(id){
+  return db.one('select valor from producto where codp=$1',id)
+            .then(data=>{
+              return data;
+            })
+            .catch(err=>{
+              console.log('Error al recuperar el valor del producto');
+            });
+}

@@ -91,7 +91,7 @@ html(lang='en')
         width:3.5em;
         margin-top:10px;
       }
-      #fixedbutton{
+      #fixedButton{
         margin:auto;
         height:50px;
         width:100%;
@@ -105,12 +105,20 @@ html(lang='en')
     link(rel='shortcut icon', href='/ico/favicon.png')
   body
     .container
+      div.modal.hide#myModal
+        .modal-header
+            button(type="button", class="close", data-dismiss="modal") x
+            h3 It's High Noon
+        .modal-body
+            p One fine body...
+        .modal-footer
+
       .masthead
         ul.nav.nav-pills.pull-right
           li
             a(href='/') Home
           li.active
-            a(href='/barra') Barra
+            a(href='/Barra') Barra
           li
             a(href='#') Administración
           li
@@ -122,175 +130,26 @@ html(lang='en')
           | Aquí encontrarás todos los bebestibles del bar.
         <!--a.btn.btn-large.btn-success(href='#') Get started today-->
       form(name='drinks-checkout',method='post')  
+        - let currentProd = 0
+        - for (let row = 0; row <= data.length / 3; row++)
+          hr
+          .row-fluid
+            - for (let prod = 1; prod <= 3; prod++)
+              - if (currentProd < data.length)
+                .span4
+                  img(src='/img/drinks/#{data[currentProd].nombre}.png', width='100')
+                  p #{data[currentProd].nombre} 
+                  p $#{data[currentProd].valor}
+                  p.desc 
+                    i "#{data[currentProd].descripcion}"
+                  p #{data[currentProd].categoria}
+                  select(name='dropdown')
+                    - for(let j = 0; j <= 5; j++)
+                      option(value='#{j}+#{data[currentProd].nombre}+#{data[currentProd].valor}') #{j}
+                - currentProd++
+        
         hr
-        .row-fluid
-          .span4
-            img(src='/img/drinks/#{data[0].nombre}.png', width='100')
-            p.nombre #{data[0].nombre} 
-            p $#{data[0].valor}
-            p.desc 
-              i "#{data[0].descripcion}"
-            p #{data[0].categoria}
-            select(name='dropdown')
-              -for(var i=1;i<=5;i++)
-                option(value='#{i}') #{i} 
-          .span4
-            img(src='/img/drinks/#{data[1].nombre}.png', width='100')
-            p.nombre #{data[1].nombre} 
-            p $#{data[1].valor}
-            p.desc 
-              i "#{data[1].descripcion}"
-            p #{data[1].categoria}
-            select(name='dropdown')
-              -for(var i=1;i<=5;i++)
-                option(value='#{i}') #{i} 
-          .span4
-            img(src='/img/drinks/#{data[2].nombre}.png', width='100')
-            p.nombre #{data[2].nombre} 
-            p $#{data[2].valor}
-            p.desc 
-              i "#{data[2].descripcion}"
-            select(name='dropdown')
-              -for(var i=1;i<=5;i++)
-                option(value='#{i}') #{i} 
-        hr
-        .row-fluid
-          .span4
-            img(src='/img/drinks/#{data[3].nombre}.png', width='100')
-            p.nombre #{data[3].nombre} 
-            p $#{data[3].valor}
-            p.desc 
-              i "#{data[3].descripcion}"
-            select(name='dropdown')
-              -for(var i=1;i<=5;i++)
-                option(value='#{i}') #{i} 
-          .span4
-            img(src='/img/drinks/#{data[4].nombre}.png', width='100')
-            p.nombre #{data[4].nombre} 
-            p $#{data[4].valor}
-            p.desc 
-              i "#{data[4].descripcion}"
-            select(name='dropdown')
-              -for(var i=1;i<=5;i++)
-                option(value='#{i}') #{i} 
-          .span4
-            img(src='/img/drinks/#{data[5].nombre}.png', width='100')
-            p.nombre #{data[5].nombre} 
-            p $#{data[5].valor}
-            p.desc 
-              i "#{data[5].descripcion}"
-            select(name='dropdown')
-              -for(var i=1;i<=5;i++)
-                option(value='#{i}') #{i} 
-        hr
-        .row-fluid
-          .span4
-            img(src='/img/drinks/#{data[6].nombre}.png', width='100')
-            p.nombre #{data[6].nombre} 
-            p $#{data[6].valor}
-            p.desc 
-              i "#{data[6].descripcion}"
-            select(name='dropdown')
-              -for(var i=1;i<=5;i++)
-                option(value='#{i}') #{i} 
-          .span4
-            img(src='/img/drinks/#{data[7].nombre}.png', width='100')
-            p.nombre #{data[7].nombre} 
-            p $#{data[7].valor}
-            p.desc 
-              i "#{data[7].descripcion}"
-            select(name='dropdown')
-              -for(var i=1;i<=5;i++)
-                option(value='#{i}') #{i} 
-          .span4
-            img(src='/img/drinks/#{data[8].nombre}.png', width='100')
-            p.nombre #{data[8].nombre} 
-            p $#{data[8].valor}
-            p.desc 
-              i "#{data[8].descripcion}"
-            select(name='dropdown')
-              -for(var i=1;i<=5;i++)
-                option(value='#{i}') #{i} 
-        hr
-        .row-fluid
-          .span4
-            img(src='/img/drinks/#{data[9].nombre}.png', width='100')
-            p.nombre #{data[9].nombre} 
-            p $#{data[9].valor}
-            p.desc 
-              i "#{data[9].descripcion}"
-            select(name='dropdown')
-              -for(var i=1;i<=5;i++)
-                option(value='#{i}') #{i} 
-          .span4
-            img(src='/img/drinks/#{data[10].nombre}.png', width='100')
-            p.nombre #{data[10].nombre} 
-            p $#{data[10].valor}
-            p.desc 
-              i "#{data[10].descripcion}" 
-            select(name='dropdown')
-              -for(var i=1;i<=5;i++)
-                option(value='#{i}') #{i}                  
-          .span4
-            img(src='/img/drinks/#{data[11].nombre}.png', width='100')
-            p.nombre #{data[11].nombre} 
-            p $#{data[11].valor}
-            p.desc 
-              i "#{data[11].descripcion}"  
-            select(name='dropdown')
-              -for(var i=1;i<=5;i++)
-                option(value='#{i}') #{i}            
-        hr
-        .row-fluid
-          .span4
-            img(src='/img/drinks/#{data[12].nombre}.png', width='100')
-            p.nombre #{data[12].nombre} 
-            p $#{data[12].valor}
-            p.desc 
-              i "#{data[12].descripcion}" 
-            select(name='dropdown')
-              -for(var i=1;i<=5;i++)
-                option(value='#{i}') #{i}                    
-          .span4
-            img(src='/img/drinks/#{data[13].nombre}.png', width='100')
-            p.nombre #{data[13].nombre}
-            p $#{data[13].valor}
-            p.desc 
-              i "#{data[13].descripcion}"
-            select(name='dropdown')
-              -for(var i=1;i<=5;i++)
-                option(value='#{i}') #{i} 
-          .span4
-            img(src='/img/drinks/#{data[14].nombre}.png', width='100')
-            p.nombre #{data[14].nombre} 
-            p $#{data[14].valor}
-            p.desc 
-              i "#{data[14].descripcion}"
-            select(name='dropdown')
-              -for(var i=1;i<=5;i++)
-                option(value='#{i}') #{i} 
-        hr
-        .row-fluid
-          .span4
-            img(src='/img/drinks/#{data[15].nombre}.png', width='100')
-            p.nombre #{data[15].nombre} 
-            p $#{data[15].valor}
-            p.desc 
-              i "#{data[15].descripcion}"
-            select(name='dropdown')
-              -for(var i=1;i<=5;i++)
-                option(value='#{i}') #{i} 
-          .span4
-            img(src='/img/drinks/#{data[16].nombre}.png', width='100')
-            p.nombre #{data[16].nombre} 
-            p $#{data[16].valor}
-            p.desc 
-              i "#{data[16].descripcion}"
-            select(name='dropdown')
-              -for(var i=1;i<=5;i++)
-                option(value='#{i}') #{i} 
-        hr
-        a.btn.btn-large.btn-success#fixedbutton(href='#') Checkout      
+        a.btn.btn-large.btn-success#fixedButton(href='#') Checkout
       
       hr
       .footer

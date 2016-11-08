@@ -10,9 +10,15 @@ const express = require('express')
   , path = require('path')
   , db = require('./config');
 
+
+
 const app = express();
+
+// CONTROLADORES
+
 const userController = require('./controllers/usuarioController')
 const barraController = require('./controllers/barraController')
+
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -38,18 +44,14 @@ app.get('/', function(req,res) {
   res.render("default");
 });
 
+// ROUTES
+
+const barraRoute = require('./routes/barra')
+app.use('/barra',barraRoute);
+
+
 app.get('/fluid', function(req,res) { res.render("layouts/fluid")});
 app.get('/hero', function(req,res) { res.render("layouts/hero")});
-app.get('/barra', function(req,res) {
-
-  barraController.getAllDrinks()
-                                .then(
-                                      drinks =>{
-                                          res.render('layouts/barra',{data:drinks})
-                                        });
-
-  //res.render('layouts/barra',{data:[{"nombre":"Juan"},{"nombre":"Juanita"},{"nombre":"Lucho"}]});
-});
 app.get('/narrow', function(req,res) { res.render("layouts/marketing-narrow")});
 app.get('/signin', function(req,res) { res.render("layouts/signin")});
 app.get('/starter', function(req,res) { res.render("layouts/starter-template")});
