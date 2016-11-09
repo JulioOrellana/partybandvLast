@@ -86,6 +86,18 @@ html(lang='en')
         text-align: center;
         color: #173d50;
         background-color: rgba(23, 61, 80, 0.06);
+      }.span8 p{
+        margin-top:20px;
+        text-align:center;
+        font-size:30px;
+      }
+      .span8{
+        height: auto;
+        padding: 1.9em 0.9em 1.6em;
+        pointer-events: auto;
+        text-align: center;
+        color: #173d50;
+        background-color: rgba(23, 61, 80, 0.06);
       }
       select{
         width:3.5em;
@@ -109,10 +121,23 @@ html(lang='en')
       .span4.empty{
         background-color: transparent;
       }
+      .resumeheader{
+        height: 54px;
+        padding-top: 0px;
+      }
       .scroll-down{
         position: fixed;
         right: 50px;
         bottom: 50px;
+      }
+      .modal{
+        width:700px;        
+      }
+      .modal-body{
+        max-height:600px;
+      }
+      .modal-footer{
+        display:none;
       }
     link(href='/css/bootstrap-responsive.css', rel='stylesheet')
     link(rel='apple-touch-icon-precomposed', sizes='144x144', href='/ico/apple-touch-icon-144-precomposed.png')
@@ -126,24 +151,31 @@ html(lang='en')
         .modal-header
             button(type="button", class="close", data-dismiss="modal") x
             h3 Resumen del pedido
-        .modal-body
-            
+        .modal-body            
             .row-fluid
-              .span4.drink-names-header
+              .span4.drink-names.resumeheader
                 p Productos
-              .span4.drink-quantity-header
+              .span4.drink-quantity.resumeheader
                 p Cantidad
-              .span4.drink-values-header
+              .span4.drink-values.resumeheader
                 p Valor
-            
+            hr
             .row-fluid
               .span4.drink-names
+                hr
               .span4.drink-quantity
+                hr
               .span4.drink-values
-              
+                hr
+            hr
             .row-fluid
-              .span4.empty
-              .span4.empty
+              .span8.confirm.resumeheader
+                p Confirmar pedido
+              .span4.total.resumeheader
+                p Total
+            hr
+            .row-fluid
+              .span8                
               .span4.drink-result
               
         .modal-footer

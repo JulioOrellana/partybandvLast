@@ -27,9 +27,9 @@
       {
         compra.push(res[i]+'+'+rToken)
         var s = items[0] * items[2] // Cantidad x valor
-        $('.span4.drink-names').append('<p>'+items[1]+'</p>  ')
+        $('.span4.drink-names').append('<p>'+items[1]+'</p>')
         $('.span4.drink-quantity').append('<p>'+items[0]+'<p>')
-        $('.span4.drink-values').append('<p>'+s+'<p>')
+        $('.span4.drink-values').append('<p>$'+s+'<p>')
         suma+=s
       }
     }
