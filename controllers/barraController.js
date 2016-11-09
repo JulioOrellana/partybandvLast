@@ -27,7 +27,7 @@ exports.getAllDrinks = function getAllDrinks()
                   });
 }
 
-exports.getSingleValue = function getSingleValue(id){
+exports.getSingleDrinkValue = function getSingleDrinkValue(id){
   return db.one('select valor from producto where codp=$1',id)
             .then(data=>{
               return data;
