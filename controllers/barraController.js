@@ -36,3 +36,13 @@ exports.getSingleDrinkValue = function getSingleDrinkValue(id){
               console.log('Error al recuperar el valor del producto');
             });
 }
+
+exports.getSingleUser = function getSingleUser(numpulsera){
+  return db.one('select * from consumidor c, pulsera p, saldo s where c.codc=p.codp and p.codp = s.cods and numero=$1;',numpulsera)
+              .then(data => {
+                return data;
+              })
+              .catch(err => {
+                return "Sin resultados para pulsera número: "+numpulsera+".";
+              })
+}

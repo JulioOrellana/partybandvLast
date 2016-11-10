@@ -7,6 +7,7 @@ html(lang='en')
     meta(name='description', content='')
     meta(name='author', content='')
     link(href='/css/bootstrap.css', rel='stylesheet')
+    link(rel='stylesheet', href='/css/jquery.numpad.css')
     style(type='text/css')
       * {
         box-sizing: border-box;
@@ -139,12 +140,27 @@ html(lang='en')
       .modal-footer{
         display:none;
       }
-    link(href='/css/bootstrap-responsive.css', rel='stylesheet')
-    link(rel='apple-touch-icon-precomposed', sizes='144x144', href='/ico/apple-touch-icon-144-precomposed.png')
-    link(rel='apple-touch-icon-precomposed', sizes='114x114', href='/ico/apple-touch-icon-114-precomposed.png')
-    link(rel='apple-touch-icon-precomposed', sizes='72x72', href='/ico/apple-touch-icon-72-precomposed.png')
-    link(rel='apple-touch-icon-precomposed', href='/ico/apple-touch-icon-57-precomposed.png')
-    link(rel='shortcut icon', href='/ico/favicon.png')
+      p.resultAjax{
+        text-align:left;
+      }
+      .span8.result-data p{
+        font-size:16px;
+      }
+      .result-data-user p{
+        font-size:16px;
+      }
+      input#pinpulsera{
+        width:49px;
+      }
+      input#lectorpulsera{
+        width:118px;
+      }
+    //link(href='/css/bootstrap-responsive.css', rel='stylesheet')
+    //link(rel='apple-touch-icon-precomposed', sizes='144x144', href='/ico/apple-touch-icon-144-precomposed.png')
+    //link(rel='apple-touch-icon-precomposed', sizes='114x114', href='/ico/apple-touch-icon-114-precomposed.png')
+    //link(rel='apple-touch-icon-precomposed', sizes='72x72', href='/ico/apple-touch-icon-72-precomposed.png')
+    //link(rel='apple-touch-icon-precomposed', href='/ico/apple-touch-icon-57-precomposed.png')
+    //link(rel='shortcut icon', href='/ico/favicon.png')
   body
     .container
       div.modal.hide#myModal
@@ -161,11 +177,11 @@ html(lang='en')
                 p Valor
             hr
             .row-fluid
-              .span4.drink-names
+              .span4.drink-names.data
                 hr
-              .span4.drink-quantity
+              .span4.drink-quantity.data
                 hr
-              .span4.drink-values
+              .span4.drink-values.data
                 hr
             hr
             .row-fluid
@@ -175,7 +191,10 @@ html(lang='en')
                 p Total
             hr
             .row-fluid
-              .span8                
+              .span8.result-data
+                p Acerque la pulser al lector:
+                input#lectorpulsera(type='text',name='numpulsera',maxlength='10')
+                .result-data-user
               .span4.drink-result
               
         .modal-footer
