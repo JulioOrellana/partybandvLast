@@ -7,7 +7,7 @@ html(lang='en')
     meta(name='description', content='')
     meta(name='author', content='')
     link(href='/css/bootstrap.css', rel='stylesheet')
-    link(rel='stylesheet', href='/css/jquery.numpad.css')
+    //link(rel='stylesheet', href='/css/materialize.min.css')
     style(type='text/css')
       * {
         box-sizing: border-box;
@@ -192,9 +192,23 @@ html(lang='en')
             hr
             .row-fluid
               .span8.result-data
-                p Acerque la pulser al lector:
-                input#lectorpulsera(type='text',name='numpulsera',maxlength='10')
+                .carro-vacio
+                  p Canasta de compras vacía
+                .carro-con-productos
+                  p Acerque la pulser al lector:
+                  input#lectorpulsera(type='text',name='numpulsera',maxlength='10')
                 .result-data-user
+                  p.pulsera-no-encontrada ¡Pulsera no encontrada!
+                  .form-confirmar-compra-div
+                    form(id='form-confirmar-compra',href='/Barra/confirmarcompra',method='post')
+                      .form-nombre-usuario
+                      .form-saldo-usuario
+                      .form-saldo-insuficiente ¡Saldo insuficiente!
+                      input(type='password', maxlength='4',id='pinpulsera')br
+                      input#boton-confirmar(type='submit', class='btn btn-success',value='Confirmar')
+                      &nbsp;
+                      input(type='reset',class='btn btn-danger botonReset',value='Borrar Datos')                   
+
               .span4.drink-result
               
         .modal-footer
@@ -218,7 +232,6 @@ html(lang='en')
         p.lead
           | Aquí encontrarás todos los bebestibles del bar.
         <!--a.btn.btn-large.btn-success(href='#') Get started today-->
-      form(name='drinks-checkout',method='post')  
         - let currentProd = 0
         - for (let row = 0; row <= data.length / 3; row++)
           hr
@@ -239,7 +252,6 @@ html(lang='en')
         
         hr
         a.btn.btn-large.btn-success#fixedButton(href='/barra') Checkout
-      
       hr
       .footer
         p © PartyBand 2016
