@@ -46,3 +46,8 @@ exports.getSingleUser = function getSingleUser(numpulsera){
                 return "Sin resultados para pulsera número: "+numpulsera+".";
               })
 }
+
+exports.userPayment = function userPayment(){
+  
+              
+}

@@ -27,9 +27,4 @@ router.get('/getUser/:numpulsera', function(req,res,next)
                  })
 })
 
-router.get('/getHello', function(req,res,next)
-{
-
-})
-
 module.exports = router;

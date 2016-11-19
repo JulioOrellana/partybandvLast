@@ -7,6 +7,7 @@
   */
 
   var compra = []
+  var usuario = []
   /*
     compra[] contiene 5 elementos por celda.
     (0) Cantidad de producto seleccionado
@@ -118,26 +119,14 @@
           if( dato.data.saldo < suma)
           {
             $('.form-saldo-insuficiente').show()
-            $('#boton-confirmar').attr('disable',true)  
+            $('.boton-confirmar2').prop('disabled',true)  
+          }
+          else
+          {
+            compra.push(dato.data.codc)
+            $('.boton-confirmar2').prop('disabled',false)
           }
         }
-
-
-      /*
-      if(data.data.nombre === undefined)
-        $('.result-data-user').append('<p>'+data.data+'</p>')
-      else
-      {
-
-        $('.result-data-user').append("<form id='form-confirmar-compra' href='/Barra/confirmarcompra' method='post'>")
-        $('.result-data-user').append('<p>Nombre: '+data.data.nombre+'</p>')
-        $('.result-data-user').append('<p>Saldo: $'+data.data.saldo+'</p>')
-        $('.result-data-user').append("<input type='password' maxlength='4' id='pinpulsera'><br>")
-        $('.result-data-user').append("<input type='submit' class='btn btn-success' value='Confirmar'>&nbsp;")
-        $('.result-data-user').append("<input type='reset' class='btn btn-danger botonReset' value='Borrar Datos'>")
-        $('.result-data-user').append('</form>')
-      }
-      */
     })  
   })
 
@@ -147,6 +136,32 @@
     })
 
 
+  $('#boton-confirmar').submit(event =>{
+    var pinp = $('#pinpulsera').val()
+    //console.log('pinp= '+pinp)
+    //console.log('usario.pin= '+usuario.data.pin)
+    if(pinp == usuario.data.pin)
+    {
+      compra.push(usuario)
+      /*$.ajax({
+          url: "/answer_checker.php",
+          global: false, 
+          type: "POST", 
+          data: ({...clipped...}), 
+          cache: false,
+          beforeSend: function() {
+            $('#response').html("<img src='/images/loading.gif' />");
+          },
+          success: function(html) {
+            $('#response').html(html);
+          }
+        }*/
+    }
+    else
+    {
+      
+    }
+  })
 
 })()
 

@@ -200,12 +200,12 @@ html(lang='en')
                 .result-data-user
                   p.pulsera-no-encontrada ¡Pulsera no encontrada!
                   .form-confirmar-compra-div
-                    form(id='form-confirmar-compra',href='/Barra/confirmarcompra',method='post')
+                    form(id='form-confirmar-compra',method='post')
                       .form-nombre-usuario
                       .form-saldo-usuario
                       .form-saldo-insuficiente ¡Saldo insuficiente!
-                      input(type='password', maxlength='4',id='pinpulsera')br
-                      input#boton-confirmar(type='submit', class='btn btn-success',value='Confirmar')
+                      input#pin-pulsera(type='password', maxlength='4',id='pinpulsera')br
+                      input#boton-confirmar(type='submit', class='btn btn-success boton-confirmar2',value='Confirmar')
                       &nbsp;
                       input(type='reset',class='btn btn-danger botonReset',value='Borrar Datos')                   
 
