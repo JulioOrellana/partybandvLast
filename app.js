@@ -9,7 +9,8 @@ const express = require('express')
   , barraRoute = require('./routes/barra')
   , http = require('http')
   , path = require('path')
-  , db = require('./config');
+  , db = require('./config')
+  , bodyParser = require('body-parser');
 
 
 
@@ -26,6 +27,7 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
 
 app.get('/', function(req,res) {
   res.render("default");

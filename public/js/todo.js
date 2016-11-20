@@ -8,6 +8,7 @@
 
   var compra = []
   var usuario = []
+  var pulsera;
   /*
     compra[] contiene 5 elementos por celda.
     (0) Cantidad de producto seleccionado
@@ -51,7 +52,16 @@
       var items = res[i].split("+"); // (0)+(1)+(2)+(3)
       if(items[0]!=0)
       {
-        compra.push(res[i]+'+'+rToken)
+        //compra.push(res[i]+'+'+rToken)
+
+        var productosJSOn = new Object()
+        productosJSOn.cantidad = items[0]
+        productosJSOn.nombre = items[1]
+        productosJSOn.valor = items[2]
+        productosJSOn.codigo = items[3]
+        productosJSOn.token = rToken
+        compra.push(productosJSOn)
+
         var s = items[0] * items[2] // Cantidad x valor
         $('.span4.drink-names.data').append('<p>'+items[1]+'</p>')
         $('.span4.drink-quantity.data').append('<p>'+items[0]+'<p>')
@@ -105,11 +115,12 @@
     $('#lectorpulsera').attr('value','')
 
     $.get('/Barra/getUser/'+numpulsera,function(dato){
-      
+
       if(dato.data.nombre === undefined)
       {
         $('.pulsera-no-encontrada').show()
         $('.form-confirmar-compra-div').hide()
+        pulsera = ''
       }
       else
         {
@@ -119,12 +130,13 @@
           if( dato.data.saldo < suma)
           {
             $('.form-saldo-insuficiente').show()
-            $('.boton-confirmar2').prop('disabled',true)  
+            $('#boton-confirmar').prop('disabled',true)  
           }
           else
           {
-            compra.push(dato.data.codc)
-            $('.boton-confirmar2').prop('disabled',false)
+            usuario = dato
+            pulsera = numpulsera
+            $('#boton-confirmar').prop('disabled',false)
           }
         }
     })  
@@ -136,26 +148,50 @@
     })
 
 
-  $('#boton-confirmar').submit(event =>{
+  $('#boton-confirmar').click(event =>{
     var pinp = $('#pinpulsera').val()
     //console.log('pinp= '+pinp)
     //console.log('usario.pin= '+usuario.data.pin)
     if(pinp == usuario.data.pin)
-    {
-      compra.push(usuario)
-      /*$.ajax({
-          url: "/answer_checker.php",
+    {      
+      compra.push(usuario.data.codc)
+      compra.push(suma)
+      compra.push(pulsera)
+      
+      $.ajax({
+          url: "/Barra/agregarCompra",
           global: false, 
-          type: "POST", 
-          data: ({...clipped...}), 
+          type: "POST",
+          dataType: "json",
+          data: (JSON.stringify(compra)),
+          contentType: "application/json", 
           cache: false,
-          beforeSend: function() {
-            $('#response').html("<img src='/images/loading.gif' />");
+          beforeSend: function() {         
+
+              $('.modal-body').empty()
+              $('.modal-body').html("<center><img src='/img/loading.gif' /></center>")
+      
           },
           success: function(html) {
-            $('#response').html(html);
+            if(html)
+            {              
+              $('.modal-body').empty()
+              $('.modal-body').html(`<center><img src='/img/tick_green.png' /><br>
+                                     Pago Aceptado</center>`)
+
+              setTimeout(function(){ 
+
+              location.href=location.href
+
+              },10000)
+            }            
+            else
+            {              
+              $('.modal-body').empty()
+              $('.modal-body').append('<center>rechazado</center>')
+            }  
           }
-        }*/
+        })       
     }
     else
     {

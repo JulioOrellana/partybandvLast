@@ -203,9 +203,10 @@ html(lang='en')
                     form(id='form-confirmar-compra',method='post')
                       .form-nombre-usuario
                       .form-saldo-usuario
-                      .form-saldo-insuficiente ¡Saldo insuficiente!
+                      .form-saldo-insuficiente 
+                        p(style='color:red')¡Saldo insuficiente!
                       input#pin-pulsera(type='password', maxlength='4',id='pinpulsera')br
-                      input#boton-confirmar(type='submit', class='btn btn-success boton-confirmar2',value='Confirmar')
+                      input#boton-confirmar(type='button', class='btn btn-success',value='Confirmar')
                       &nbsp;
                       input(type='reset',class='btn btn-danger botonReset',value='Borrar Datos')                   
 

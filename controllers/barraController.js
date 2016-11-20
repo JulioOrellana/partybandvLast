@@ -47,7 +47,60 @@ exports.getSingleUser = function getSingleUser(numpulsera){
               })
 }
 
-exports.userPayment = function userPayment(){
-  
+exports.userPayment = function userPayment(c,p,m,pul){
+  console.log('en barraController')
+
+  return db.tx(t=>
+                  t.batch([
+                          p.map(p=>
+                                      t.none(
+                                             `insert into orden (producto,cantidad,token,monto,fecha,codproducto,codconsumidor)
+                                              values ($1,$2,$3,$4,now(),$5,$6)`,[p.nombre,p.cantidad,p.token,p.valor,p.codigo,c])),
+                                      t.one(`select * from pulsera where numero=$1`,pul)
+                                          .then(cpulsera =>{
+                                            console.log('En cpulsera: '+cpulsera.codp)
+                                            return t.one(`select * from saldo where codpulsera=$1`,cpulsera.codp)
+                                          }).catch(err=>{console.log('En error de cpulsera: '+pul+', '+err); return false})
+                                          .then(saldo =>{
+                                            console.log('En saldo: '+saldo.saldo+', '+saldo.codpulsera)
+                                            return t.none(`update saldo set saldo=$1 where codpulsera=$2`,[(saldo.saldo-m),saldo.codpulsera])
+                                          }).catch(err=>{console.log('En error de saldo: '+m+', '+err); return false})                    
+                          ]))
+          .then(data=> {
+              // SUCCESS
+              // data = array of null-s
+              console.log('en success de la transacción')
+              return true
+          })
+          .catch(error=> {
+              // ERROR
+              console.log('en error de la transacción')
+              return false
+          })
+
+
+
+
+  /* return db.tx(t=>{  
+                return t.batch([
+                  p.map( l => 
+                    l.none(`insert into orden (producto,cantidad,token,monto,fecha,codproducto,codconsumidor)
+                            values ($1,$2,$3,$4,now(),$5,$6)`,[p.nombre,p.cantidad,p.token,p.valor,p.codigo,c])
+                  )
+                  
+                  t.one(`select codp from pulsera where pulsera=$1`,pul)
+                    .then(cpulsera =>{
+                      t.one(`select saldo,codp from saldo where codpulsera=$1`,cpulsera.codp)
+                    })
+                    .then(saldo =>{
+                      t.none(`update saldo set saldo=$1 where codp=$2`,[saldo.saldo,saldo.codp-m])
+                    })
+                ])
+          })
+            .then(data =>{
+              console.log(data)
+            })
+            .catch()
+            */
               
 }
