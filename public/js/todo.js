@@ -173,8 +173,7 @@
       
           },
           success: function(html) {
-            if(html)
-            {              
+                          
               $('.modal-body').empty()
               $('.modal-body').html(`<center><img src='/img/tick_green.png' /><br>
                                      Pago Aceptado</center>`)
@@ -183,13 +182,13 @@
 
               location.href=location.href
 
-              },10000)
-            }            
-            else
-            {              
+              },10000)                      
+          },
+          error: function(err){          
+                        
               $('.modal-body').empty()
               $('.modal-body').append('<center>rechazado</center>')
-            }  
+            
           }
         })       
     }

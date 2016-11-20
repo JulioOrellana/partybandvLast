@@ -56,15 +56,23 @@ exports.userPayment = function userPayment(c,p,m,pul){
                                       t.none(
                                              `insert into orden (producto,cantidad,token,monto,fecha,codproducto,codconsumidor)
                                               values ($1,$2,$3,$4,now(),$5,$6)`,[p.nombre,p.cantidad,p.token,p.valor,p.codigo,c])),
-                                      t.one(`select * from pulsera where numero=$1`,pul)
-                                          .then(cpulsera =>{
-                                            console.log('En cpulsera: '+cpulsera.codp)
-                                            return t.one(`select * from saldo where codpulsera=$1`,cpulsera.codp)
-                                          }).catch(err=>{console.log('En error de cpulsera: '+pul+', '+err); return false})
-                                          .then(saldo =>{
-                                            console.log('En saldo: '+saldo.saldo+', '+saldo.codpulsera)
-                                            return t.none(`update saldo set saldo=$1 where codpulsera=$2`,[(saldo.saldo-m),saldo.codpulsera])
-                                          }).catch(err=>{console.log('En error de saldo: '+m+', '+err); return false})                    
+                          p.map(p=>
+                                      t.one(
+                                            `select * from producto where codp=$1`,p.codigo)
+                                            .then(producto =>{
+                                              return t.none(`update producto set stock=$1 where codp=$2`,[producto.stock-p.cantidad,p.codigo])
+                                                      })
+                                            .catch(rr=>{console.log('En error de saldo: '+m+', '+err); return false})
+                          ),                                      
+                          t.one(`select * from pulsera where numero=$1`,pul)
+                              .then(cpulsera =>{
+                                console.log('En cpulsera: '+cpulsera.codp)
+                                return t.one(`select * from saldo where codpulsera=$1`,cpulsera.codp)
+                              }).catch(err=>{console.log('En error de cpulsera: '+pul+', '+err); return false})
+                              .then(saldo =>{
+                                console.log('En saldo: '+saldo.saldo+', '+saldo.codpulsera)
+                                return t.none(`update saldo set saldo=$1 where codpulsera=$2`,[(saldo.saldo-m),saldo.codpulsera])
+                              }).catch(err=>{console.log('En error de saldo: '+m+', '+err); return false})                  
                           ]))
           .then(data=> {
               // SUCCESS
