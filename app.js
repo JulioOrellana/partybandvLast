@@ -6,11 +6,11 @@
 const express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
-  , barraRoute = require('./routes/barra')
   , http = require('http')
   , path = require('path')
   , db = require('./config')
-  , bodyParser = require('body-parser');
+  , bodyParser = require('body-parser')
+  , cookieParser = require('cookie-parser');
 
 
 
@@ -28,6 +28,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
+app.use(cookieParser('asd123'))
 
 app.get('/', function(req,res) {
   res.render("default");
@@ -35,8 +36,11 @@ app.get('/', function(req,res) {
 
 // ROUTES
 
-app.use('/barra',barraRoute);
+const barraRoute = require('./routes/barra')
+const loginRoute = require('./routes/login')
 
+app.use('/barra',barraRoute);
+app.use('/login',loginRoute)
 
 app.get('/fluid', function(req,res) { res.render("layouts/fluid")});
 app.get('/hero', function(req,res) { res.render("layouts/hero")});
