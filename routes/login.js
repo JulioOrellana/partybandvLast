@@ -22,11 +22,13 @@ router.post('/access',function(req,res,next){
 
   console.log('Desde router /access: '+user+', '+pass)
 
-  loginController.getUser(user,pass)
+  loginController.getData(user,pass)
     .then(
-      user=>{
+      data=>{
         req.session.active = true
-        req.session.user = user
+        req.session.user = data[0]
+        req.session.productos = data[1]
+        req.session.consumidores = data[2]
         res.redirect('/locatario')
       })
     .catch(err=>{

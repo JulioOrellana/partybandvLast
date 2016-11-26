@@ -1,0 +1,20 @@
+table.responstable
+  tr
+    th Imagen  
+    th Nombre 
+    th Categoría 
+    th Valor 
+    th Descripción 
+    th Stock 
+    th Proveedor 
+    th Teléfono
+  - for(let i = 0 ; i < productos.length ; i++)
+    tr
+      td img(src='/img/drinks/#{productos.nombre}.png', width='100')
+      td #{productos.nombre}
+      td #{productos.categoria}
+      td #{productos.valor}
+      td #{productos.descripcion}
+      td #{productos.stock}
+      td #{productos.proveedor}
+      td #{productos.telefono}

@@ -16,6 +16,7 @@ html(lang='en')
       padding: 9px 0;
       }
     link(href='/css/bootstrap-responsive.css', rel='stylesheet')
+    link(href='/css/app/locatario.css', rel='stylesheet')
   body
     .navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
@@ -68,7 +69,36 @@ html(lang='en')
               li
                 a(href='#') Link
         .span9
-          block content
+          #verproductos
+            .row-fluid
+            .span8
+              //include interfazGestionFiles/verProductos.jade
+              table.responstable
+                tr
+                  th Imagen  
+                  th Nombre 
+                  th Categoría 
+                  th Valor 
+                  th Descripción 
+                  th Stock 
+                  th Proveedor 
+                  th Teléfono
+                - for(let i = 0 ; i < productos.length ; i++)
+                  tr
+                    td 
+                      img(src='/img/drinks/#{productos[i].nombreproducto}.png', width='100')
+                    td #{productos[i].nombreproducto}
+                    td #{productos[i].categoria}
+                    td #{productos[i].valor}
+                    td #{productos[i].descripcion}
+                    td #{productos[i].stock}
+                    td #{productos[i].nombreproveedor}
+                    td #{productos[i].telefono}       
+            .row-fluid
+          #verstock
+            .row-fluid            
+            .row-fluid
+            
           
       hr
       footer

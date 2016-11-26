@@ -10,7 +10,14 @@ router.get('/',function(req,res,next)
     console.log('Es valida la session?: '+req.session.active)
     if(req.session.active)
     {
-        res.render('layouts/interfazGestion',{user : req.session.user})
+        console.log(req.session.user)
+        console.log(req.session.productos)
+        console.log(req.session.consumidores)
+        res.render('layouts/interfazGestion',{
+                                                user : req.session.user,
+                                                productos : req.session.productos,
+                                                consumidores: req.session.consumidores
+                                        })
     }
     else
     {
