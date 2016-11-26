@@ -1,0 +1,76 @@
+!!! 5
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title Bootstrap, from Twitter
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    link(href='/css/bootstrap.css', rel='stylesheet')
+    style(type='text/css')
+      body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+      }
+      .sidebar-nav {
+      padding: 9px 0;
+      }
+    link(href='/css/bootstrap-responsive.css', rel='stylesheet')
+  body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container-fluid
+          a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href='/') Party Band
+          .nav-collapse.collapse
+            p.navbar-text.pull-right
+              | Logged in as
+              &nbsp;
+              a.navbar-link(href='#') #{user.nombre}
+            ul.nav
+              li.active
+                a#salirsession(href='/locatario/salir') Salir
+    .container-fluid
+      .row-fluid
+        .span3
+          .well.sidebar-nav
+            ul.nav.nav-list
+              li.nav-header Barra
+              li.active
+                a(href='#') Ver Productos
+              li
+                a(href='#') Stock
+              li
+                a(href='#') Link
+              li
+                a(href='#') Link
+              li.nav-header Sidebar
+              li
+                a(href='#') Link
+              li
+                a(href='#') Link
+              li
+                a(href='#') Link
+              li
+                a(href='#') Link
+              li
+                a(href='#') Link
+              li
+                a(href='#') Link
+              li.nav-header Sidebar
+              li
+                a(href='#') Link
+              li
+                a(href='#') Link
+              li
+                a(href='#') Link
+        .span9
+          block content
+          
+      hr
+      footer
+        p © PartyBand 2016
+  include ../partials/scripts

@@ -40,11 +40,12 @@ html(lang='en')
     link(href='/css/bootstrap-responsive.css', rel='stylesheet')
   body
     .container
-      form.form-signin
+      form.form-signin(method='post',action='/login/access')
         h2.form-signin-heading Por favor inicie sesión
-        input.input-block-level(type='text', placeholder='Nombre usuario')
-        input.input-block-level(type='password', placeholder='Contraseña') 
-        button.btn.btn-large.btn-primary(type='submit' value='signin') Sign in
-        button.btn.btn-large.btn-primary(type='submit' value='reg') Sign in
+        input.input-block-level(type='text',name='user',placeholder='Nombre usuario')
+        input.input-block-level(type='password',name='password',placeholder='Contraseña') 
+        button.btn.btn-large.btn-primary(type='submit', value='signin') Sign in
+        &nbsp;
+        button.btn.btn-large.btn-primary(type='submit', value='reg') Registrarse
 
   include ../partials/scripts
