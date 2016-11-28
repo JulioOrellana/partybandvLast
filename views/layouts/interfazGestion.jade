@@ -38,37 +38,20 @@ html(lang='en')
       .row-fluid
         .span3
           .well.sidebar-nav
-            ul.nav.nav-list
-              li.nav-header Barra
+            ul#menu.nav.nav-list
+              li.nav-header Funciones
               li.active
-                a(href='#') Ver Productos
+                a.clickverproductos(href='#') Productos
               li
-                a(href='#') Stock
+                a.clickverstock(href='#') Stock
               li
-                a(href='#') Link
+                a.clickverproveedores(href='#') Proveedores
               li
-                a(href='#') Link
-              li.nav-header Sidebar
-              li
-                a(href='#') Link
-              li
-                a(href='#') Link
-              li
-                a(href='#') Link
-              li
-                a(href='#') Link
-              li
-                a(href='#') Link
-              li
-                a(href='#') Link
-              li.nav-header Sidebar
-              li
-                a(href='#') Link
-              li
-                a(href='#') Link
-              li
-                a(href='#') Link
+                a.clickverventas(href='#') Ver Ventas
         .span9
+          //
+          //
+          //
           #verproductos
             .row-fluid
             .span8
@@ -80,9 +63,9 @@ html(lang='en')
                   th Categoría 
                   th Valor 
                   th Descripción 
-                  th Stock 
                   th Proveedor 
                   th Teléfono
+                  th Editar
                 - for(let i = 0 ; i < productos.length ; i++)
                   tr
                     td 
@@ -91,12 +74,30 @@ html(lang='en')
                     td #{productos[i].categoria}
                     td #{productos[i].valor}
                     td #{productos[i].descripcion}
-                    td #{productos[i].stock}
                     td #{productos[i].nombreproveedor}
-                    td #{productos[i].telefono}       
+                    td #{productos[i].telefono}
+                    td
+                        a.icon-pencil(href='#') 
             .row-fluid
+          //
+          // 
+          //
           #verstock
-            .row-fluid            
+            .row-fluid
+            .span8
+              table.responstable
+                tr
+                  th Imagen  
+                  th Nombre 
+                  th Valor 
+                  th Stock 
+                - for(let i = 0 ; i < productos.length ; i++)
+                  tr
+                    td 
+                      img(src='/img/drinks/#{productos[i].nombreproducto}.png', width='100')
+                    td #{productos[i].nombreproducto}
+                    td #{productos[i].valor}
+                    td #{productos[i].stock}
             .row-fluid
             
           

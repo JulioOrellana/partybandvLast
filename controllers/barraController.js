@@ -29,23 +29,16 @@ exports.getAllDrinks = function getAllDrinks()
 
 exports.getSingleDrinkValue = function getSingleDrinkValue(id){
   return db.one('select valor from producto where codp=$1',id)
-            .then(data=>{
-              return data;
-            })
-            .catch(err=>{
-              console.log('Error al recuperar el valor del producto');
-            });
+    .catch(err=>{
+      console.log('Error al recuperar el valor del producto');
+    });
 }
 
-exports.getSingleUser = function getSingleUser(numpulsera){
-  return db.one('select * from consumidor c, pulsera p, saldo s where c.codc=p.codp and p.codp = s.cods and numero=$1;',numpulsera)
-              .then(data => {
-                return data;
-              })
-              .catch(err => {
-                return "Sin resultados para pulsera número: "+numpulsera+".";
-              })
-}
+exports.getSingleUser = (numpulsera) =>
+   db.one('select * from consumidor c, pulsera p, saldo s where c.codc=p.codp and p.codp = s.cods and numero=$1;',numpulsera)
+    .catch(err => {
+      return "Sin resultados para pulsera número: "+numpulsera+".";
+    })
 
 exports.userPayment = function userPayment(c,p,m,pul){
   console.log('en barraController')
