@@ -10,11 +10,15 @@ const express = require('express')
   , path = require('path')
   , db = require('./config')
   , bodyParser = require('body-parser')
+  , socketio = require('socket.io')
   , session = require('express-session');
 
 
 
 const app = express();
+const server = http.createServer(app)
+const io = socketio(server)
+
 
 // CONTROLADORES
 
@@ -40,7 +44,7 @@ app.get('/', function(req,res) {
 
 // ROUTES
 
-const barraRoute = require('./routes/barra')
+const barraRoute = require('./routes/barra')(io)
 const loginRoute = require('./routes/login')
 const locatarioRoute = require('./routes/locatario')
 
@@ -55,6 +59,6 @@ app.get('/signin', function(req,res) { res.render("layouts/signin")});
 app.get('/starter', function(req,res) { res.render("layouts/starter-template")});
 app.get('/sticky', function(req,res) { res.render("layouts/sticky-footer")});
 
-http.createServer(app).listen(app.get('port'), function(){
+server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });

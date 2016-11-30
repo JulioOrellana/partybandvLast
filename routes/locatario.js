@@ -3,21 +3,22 @@
 const express = require('express')
 const router = express.Router()
 const db = require('../config')
-const barraController = require('../controllers/loginController')
+const loginController = require('../controllers/loginController')
+const locatarioController = require('../controllers/locatarioController')
 
 router.get('/',function(req,res,next)
 {
     console.log('Es valida la session?: '+req.session.active)
     if(req.session.active)
-    {
-        console.log(req.session.user)
-        console.log(req.session.productos)
-        console.log(req.session.consumidores)
-        res.render('layouts/interfazGestion',{
+    {        
+        locatarioController.getAllData()
+            .then(data =>{
+                res.render('layouts/interfazGestion',{
                                                 user : req.session.user,
-                                                productos : req.session.productos,
-                                                consumidores: req.session.consumidores
+                                                productos : data[0],
+                                                consumidores: data[1]
                                         })
+            })        
     }
     else
     {

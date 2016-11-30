@@ -10,6 +10,7 @@
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "jade": "0.30.0",
-    "pg-promise": "^5.3.5"
+    "pg-promise": "^5.3.5",
+    "socket.io": "^1.7.1"
   }
 }

@@ -27,8 +27,8 @@ router.post('/access',function(req,res,next){
       data=>{
         req.session.active = true
         req.session.user = data[0]
-        req.session.productos = data[1]
-        req.session.consumidores = data[2]
+        //req.session.productos = data[1]
+        //req.session.consumidores = data[2]
         res.redirect('/locatario')
       })
     .catch(err=>{

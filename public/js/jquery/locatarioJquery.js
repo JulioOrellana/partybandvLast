@@ -1,4 +1,7 @@
 ;(() => {
+    'use strict'
+    var socket = io()
+    socket.on('compraAceptada', console.log)
 
     hideAll()
 

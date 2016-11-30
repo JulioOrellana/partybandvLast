@@ -1,5 +1,14 @@
 ;(() => {
 
+
+  // Descativar la tecla ENTER
+  $(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  })
+
   /*
 
   Event Model
@@ -23,6 +32,7 @@
   var suma = 0
 
   $('#fixedButton').click(event =>{
+    
     event.preventDefault()
     compra = []
     var res = returnDropdownList().split(",")
@@ -81,7 +91,7 @@
     $('.span4.drink-result').append('<p>$'+suma+'<p>')
     $('#myModal').removeClass('hide')
     $('#myModal').modal('show')
-
+    $('#lectorpulsera').get(0).focus()
     return false
   })
 
@@ -127,6 +137,7 @@
           $('.form-confirmar-compra-div').show()
           $('.form-nombre-usuario').append('<p>Nombre: '+dato.data.nombre+'</p>')
           $('.form-saldo-usuario').append('<p>Saldo: $'+dato.data.saldo+'</p>')
+          $('#pinpulsera').get(0).focus()
           if( dato.data.saldo < suma)
           {
             $('.form-saldo-insuficiente').show()
@@ -141,6 +152,8 @@
         }
     })  
   })
+
+  //Resetear datos
 
   $('.botonReset').click(event =>{
       console.log('botonreset')
