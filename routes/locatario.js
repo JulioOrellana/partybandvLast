@@ -42,4 +42,17 @@ router.get('/salir', function(req,res,next){
 
 })
 
+
+router.get('/obtenerTodo',function(req,res,next)
+{
+    locatarioController.getAllData()
+            .then(data =>{
+                res.status(200)
+                    .json({
+                            productos : data[0],
+                            consumidores: data[1]
+                          })
+            }) 
+})
+
 module.exports = router

@@ -1,0 +1,56 @@
+#verproductos.anchor
+          .section
+            .row-fluid
+            .span8
+              //include interfazGestionFiles/verProductos.jade
+              table.responstable
+                tr
+                  th Imagen  
+                  th Nombre 
+                  th Categoría 
+                  th Valor 
+                  th Descripción 
+                  th Proveedor 
+                  th Teléfono
+                  th Editar
+                - //for(let i = 0 ; i < productos.length ; i++)
+                  //tr
+                    td 
+                      img(src='/img/drinks/#{productos[i].nombreproducto}.png', width='100')
+                    td #{productos[i].nombreproducto}
+                    td #{productos[i].categoria}
+                    td #{productos[i].valor}
+                    td #{productos[i].descripcion}
+                    td #{productos[i].nombreproveedor}
+                    td #{productos[i].telefono}
+                    td
+                        a.icon-pencil(href='#')
+                .tablaproductos
+            .row-fluid
+          //
+          // 
+          //
+          #verstock.anchor
+          .section
+            .row-fluid
+            .span8
+              table.responstable
+                tr
+                  th Imagen  
+                  th Nombre 
+                  th Valor 
+                  th Stock
+                  th Nivel
+                - //for(let i = 0 ; i < productos.length ; i++)
+                  //tr
+                    td 
+                      img(src='/img/drinks/#{productos[i].nombreproducto}.png', width='100')
+                    td #{productos[i].nombreproducto}
+                    td #{productos[i].valor}
+                    td #{productos[i].stock}
+                    if productos[i].stock < 100
+                      td.danger
+                    else if productos[i].stock > 100 && productos[i].stock < 150
+                      td.warning
+                    else
+                      td.success

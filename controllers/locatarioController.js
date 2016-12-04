@@ -13,3 +13,8 @@ exports.getAllData = function getAllData()
         ])
     })
 }
+
+exports.getAllProveedores = function getAllProveedores()
+{
+    return db.many('select * from proveedor')
+}

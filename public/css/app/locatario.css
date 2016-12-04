@@ -75,3 +75,37 @@ If you like this solution, you might also want to check out the 1.0 version:
     padding: 1em;
   }
 }
+
+.section {
+  display: none;
+}
+
+.anchor {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.anchor:target + .section {
+  display: block;
+}
+
+
+/*
+
+Colores tablas
+
+*/
+
+td.danger {
+  background-color: #f2dede;
+}
+
+td.warning {
+  background-color: #fcf8e3;
+}
+
+td.success {
+  background-color: #dff0d8;
+}

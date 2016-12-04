@@ -31,33 +31,36 @@ html(lang='en')
               | Logged in as
               &nbsp;
               a.navbar-link(href='#') #{user.nombre}
-            ul.nav
+            ul.nav                
               li.active
                 a#salirsession(href='/locatario/salir') Salir
     .container-fluid
       .row-fluid
-        .span3
+        .span3.menuQlo
           .well.sidebar-nav
             ul#menu.nav.nav-list
               li.nav-header Funciones
+                img.alerta(src='/img/luz-amarilla.gif',width='30px',title='Cambios en la base de datos')  
               li.active
-                a.clickverproductos(href='#') Productos
+                a.clickverproductos(href='http://localhost:3000/locatario/#verproductos') Productos
               li
-                a.clickverstock(href='#') Stock
+                a.clickverstock(href='http://localhost:3000/locatario/#verstock') Stock           
               li
                 a.clickverproveedores(href='#') Proveedores
               li
                 a.clickverventas(href='#') Ver Ventas
         .span9
+
           //
           //
           //
-          #verproductos
+          #verproductos.anchor
+          .section
             .row-fluid
             .span8
               //include interfazGestionFiles/verProductos.jade
-              table.responstable
-                tr
+              table.responstable.tablaproductos
+                //tr
                   th Imagen  
                   th Nombre 
                   th Categoría 
@@ -66,38 +69,23 @@ html(lang='en')
                   th Proveedor 
                   th Teléfono
                   th Editar
-                - for(let i = 0 ; i < productos.length ; i++)
-                  tr
-                    td 
-                      img(src='/img/drinks/#{productos[i].nombreproducto}.png', width='100')
-                    td #{productos[i].nombreproducto}
-                    td #{productos[i].categoria}
-                    td #{productos[i].valor}
-                    td #{productos[i].descripcion}
-                    td #{productos[i].nombreproveedor}
-                    td #{productos[i].telefono}
-                    td
-                        a.icon-pencil(href='#') 
             .row-fluid
           //
           // 
           //
-          #verstock
+          #verstock.anchor
+          .section
             .row-fluid
             .span8
-              table.responstable
+              table.responstable.tablastock
                 tr
                   th Imagen  
                   th Nombre 
                   th Valor 
-                  th Stock 
-                - for(let i = 0 ; i < productos.length ; i++)
-                  tr
-                    td 
-                      img(src='/img/drinks/#{productos[i].nombreproducto}.png', width='100')
-                    td #{productos[i].nombreproducto}
-                    td #{productos[i].valor}
-                    td #{productos[i].stock}
+                  th Stock
+                  th Nivel
+                      
+                    
             .row-fluid
             
           
