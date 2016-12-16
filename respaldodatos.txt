@@ -54,3 +54,5 @@
                       td.warning
                     else
                       td.success
+
+                      $('.red-alert').append("<img src='/img/luz-amarilla.gif' width='50px'>")

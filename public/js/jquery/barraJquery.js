@@ -52,6 +52,7 @@
 
     $('.carro-vacio').hide()
     $('.carro-con-productos').hide()
+    $('.errorpinpulsera').hide()
 
     for(var i = 0; i < res.length ; i++)
     {
@@ -207,8 +208,14 @@
     }
     else
     {
-      
+      $('.errorpinpulsera').show()
     }
+  })
+
+  $('#borrarpin').click(e=>{
+    $('#pinpulsera').val('')
+    $('.errorpinpulsera').hide()
+    $('#pinpulsera').get(0).focus()
   })
 
 })()

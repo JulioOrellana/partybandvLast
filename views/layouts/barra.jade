@@ -155,6 +155,14 @@ html(lang='en')
       input#lectorpulsera{
         width:118px;
       }
+      .errorpinpulsera{
+        color: red;
+      }
+      #borrarpin{
+        margin-bottom: 11px;
+        margin-left: 4px;
+        width: 20px;
+      }
     //link(href='/css/bootstrap-responsive.css', rel='stylesheet')
     //link(rel='apple-touch-icon-precomposed', sizes='144x144', href='/ico/apple-touch-icon-144-precomposed.png')
     //link(rel='apple-touch-icon-precomposed', sizes='114x114', href='/ico/apple-touch-icon-114-precomposed.png')
@@ -206,8 +214,13 @@ html(lang='en')
                       .form-saldo-insuficiente 
                         p(style='color:red')¡Saldo insuficiente!
                       p Ingrese su pin de seguridad:
-                      input#pin-pulsera(type='password', maxlength='4',id='pinpulsera')br
-                      input#boton-confirmar(type='button', class='btn btn-success',value='Confirmar')
+                      input#pin-pulsera(type='password', maxlength='4',id='pinpulsera')
+                      //input#borrarpin(type='button',class='btn btn-warning borrarpin',value='Borrar Pin')br
+                      img#borrarpin(src='/img/cancel.png')
+                      .errorpinpulsera
+                        p ¡Pin incorrecto!
+                      br
+                      input#boton-confirmar(type='button', class='btn btn-success',value='Confirmar')                      
                       &nbsp;
                       input(type='reset',class='btn btn-danger botonReset',value='Borrar Datos')                   
 
@@ -225,9 +238,9 @@ html(lang='en')
           li.active
             a(href='/Barra') Barra
           li
-            a(href='#') Administración
+            a(href='/login/locatario') Administración
           li
-            a(href='/signin') Usuarios
+            a(href='/login/consumidor') Usuarios
         h3.muted PartyBand
       .jumbotron
         h1 ¡Barra del Bar!

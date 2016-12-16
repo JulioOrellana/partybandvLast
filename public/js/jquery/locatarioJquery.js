@@ -5,6 +5,8 @@
         $('.alerta').show()
     })
     
+    llenarTablaProductos()
+    llenarTablaStock()
 
     
     hideAll()    
