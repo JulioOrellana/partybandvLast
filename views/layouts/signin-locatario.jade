@@ -37,14 +37,22 @@ html(lang='en')
       margin-bottom: 15px;
       padding: 7px 9px;
       }
+      .errorlogin{
+        color: red;
+      }
     link(href='/css/bootstrap-responsive.css', rel='stylesheet')
   body
+    -loginFail
     .container      
       form.form-signin(method='post',action='/login/access')
         img#arrow_back(src='/img/Arrow_Back.svg')
         h2.form-signin-heading Por favor inicie sesión
         input.input-block-level(type='text',name='user',placeholder='Nombre usuario')
-        input.input-block-level(type='password',name='password',placeholder='Contraseña') 
+        input.input-block-level(type='password',name='password',placeholder='Contraseña')br
+        .errorlogin
+          -console.log(loginFail)
+          -if(loginFail)
+            p Error en los datos 
         button.btn.btn-large.btn-primary(type='submit', value='signin') Sign in
         &nbsp;
         button.btn.btn-large.btn-primary(type='submit', value='reg') Registrarse

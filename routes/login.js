@@ -32,7 +32,8 @@ router.post('/access',function(req,res,next){
         res.redirect('/locatario')
       })
     .catch(err=>{
-        console.log('usuario no encontrado')
+       console.log('retorna false desde loginRoute')
+       res.render("layouts/signin-locatario",{ loginFail : true })
     })
 
 })

@@ -8,8 +8,6 @@ exports.getData = function getData(user,pass)
 {
     console.log('Desde loginController: '+user+', '+pass)
     //return db.one('select * from locatario where email=$1 and contrasena=$2',[user,pass])
-
-
     return db.task(t=>{
         return t.batch([
             t.one('select * from locatario where email=$1 and contrasena=$2',[user,pass])
