@@ -8,6 +8,7 @@
     llenarTablaProductos()
     llenarTablaStock()
     llenarTablaProveedores()
+    llenarTablaVentas()
 
     
     hideAll()    
@@ -15,7 +16,7 @@
             $('#verproductos').hide()
             $('#verstock').hide()
             $('#verproveedores').hide()
-            $('#verventas').hide()
+            $('#verventa').hide()
             $('.alerta').hide() 
         }
     
@@ -48,6 +49,10 @@
         hideAll()
         llenarTablaProveedores()
         $('#verproveedor').show()
+    })
+    $('.clickverventas').click(event=>{
+        hideAll()
+        $('#verventa').show()
     })
 
     function llenarTablaProductos()
@@ -143,8 +148,8 @@
                                                     <td>`+nombre+`</td>
                                                     <td>`+html.productos[i].valor+`</td>
                                                     <td>`+html.productos[i].stock+`</td>
-                                                    <td><a class='icon-pencil' href='/locatario/#`+html.productos[i].codp+`'></a></td>
                                                     `+td+`
+                                                    <td><a class='icon-pencil' href='/locatario/#`+html.productos[i].codp+`'></a></td>
                                                 <tr>
                                             `)                   
             }             
@@ -198,6 +203,77 @@
         }
         })  
     }
+    function llenarTablaVentas()
+    {
+        llenarMasVendido()
+    }
 
+    function llenarMasVendido()
+    {
+        $('#selectmonth').on('change',e=>{
+            var year = $('#selectyear').val()
+            var month = $('#selectmonth').val()
+            
+            if(year == undefined || year == null)
+                return
+
+            $.ajax({
+            url: "/Locatario/obtenerTodoVentas/"+month+"/"+year,
+            global: false, 
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json", 
+            cache: false,
+            beforeSend: function() {               
+            },
+            success: function(html) {
+                console.log(html)
+
+                $('.emptyAll').empty()
+
+                var ventatotalmes = (html.data[0].suma? +html.data[0].suma : 'No hay registro')
+                var clientestotales = (html.data[1].sum? html.data[1].sum : 'No hay registro')
+
+
+
+                $('.ventatotalmes').append(accounting.formatMoney(ventatotalmes,'$ ',0))
+                $('.clientestotales').append(clientestotales)
+                $('.clientestotalespordia').append(parseFloat(clientestotales/30).toFixed(2))
+
+                if(html.data[2].length > 0)
+                {
+                    $('.tablaventa03').empty()
+                    $('.tablaventa03').append(`
+                                                <tr>
+                                                <th>Más vendido</th>
+                                                <th>Cantidad</th>                                                                                                                       
+                                                </tr>
+                                            `)
+                    for(var a = 0 ; a < html.data[2].length ; a++)
+                    {
+                        $('.tablaventa03').append('<tr><td>'+html.data[2][a].producto+'</td><td>'+html.data[2][a].cantidad+'</td></tr>')
+                    }
+                }
+                else
+                {
+                    $('.tablaventa03').empty()
+                    $('.tablaventa03').append(`
+                                                <tr>
+                                                <th>Más vendido</th>
+                                                <th>Cantidad</th>                                                                                                                       
+                                                </tr>
+                                                <tr><td>Sin registros</td><td>Sin registros</td></tr>
+                                            `)
+                }              
+                 
+            },
+            error: function(err){ 
+                $('.ventatotalmes').empty()
+                $('.ventatotalmes').append('<center>Error en base de datos</center>')            
+            }
+            })  
+            })
+    }
+    
 
 })()

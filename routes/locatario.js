@@ -66,4 +66,21 @@ router.get('/obtenerProveedores',function(req,res,next)
             }) 
 })
 
+router.get('/obtenerTodoVentas/:month/:year',function(req,res,next){
+
+    let month = req.params.month
+    let year = req.params.year
+    console.log(month+" "+year)
+    locatarioController.getAllSales(month,year)
+        .then(data=>{
+            res.status(200)
+                .json({
+                    data : data
+                })
+        })
+        .catch(err=>{
+            console.log('error en obtenerTodoVentas Router!!')
+        })
+})
+
 module.exports = router

@@ -18,3 +18,37 @@ exports.getAllProveedores = function getAllProveedores()
 {
     return db.many('select * from proveedor')
 }
+
+exports.getAllSales = function getAllSales(month,year)
+{
+    return db.task(t=>{
+        return t.batch([
+            //Entrega las ventas totales del mes especificado
+            t.one(` select
+                        SUM(monto) as suma
+                    from orden
+                    where EXTRACT(MONTH from fecha) = $1 AND EXTRACT(YEAR from fecha)=$2;`,[month,year]),
+            //Entrega el número de clientes totales
+            t.one(` select
+                    sum(n1.cuenta)
+                    from
+                    (
+                        select count(cantidad) as cuenta
+                        from orden
+                        where EXTRACT(MONTH from fecha) = $1 AND EXTRACT(YEAR from fecha) = $2
+                        group by token
+                    ) n1;`,[month,year]),
+            //Entrega los productos más vendidos de mayor a menor
+            t.any(` select 
+                        producto,
+                        sum(cantidad) as cantidad
+                    from orden
+                    where EXTRACT(MONTH from fecha) = $1 AND EXTRACT(YEAR from fecha) = $2
+                    group by producto
+                    order by 2 DESC;`,[month,year])
+        ]).catch(err=>{
+            console.log('error en locatarioController en db.task!: '+err)
+            return 0
+        })
+    })
+}

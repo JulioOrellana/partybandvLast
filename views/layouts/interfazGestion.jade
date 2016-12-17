@@ -36,7 +36,7 @@ html(lang='en')
                 a#salirsession(href='/locatario/salir') Salir
     .container-fluid
       .row-fluid
-        .span3.menuQlo
+        .span3
           .well.sidebar-nav
             ul#menu.nav.nav-list
               li.nav-header Funciones
@@ -48,7 +48,7 @@ html(lang='en')
               li
                 a.clickverproveedores(href='http://localhost:3000/locatario/#verproveedor') Proveedores
               li
-                a.clickverventas(href='#') Ver Ventas
+                a.clickverventas(href='http://localhost:3000/locatario/#verventa') Ver Ventas
         .span9
 
           //
@@ -77,16 +77,7 @@ html(lang='en')
           .section
             .row-fluid
             .span8
-              table.responstable.tablastock
-                tr
-                  th Imagen  
-                  th Nombre 
-                  th Valor 
-                  th Stock
-                  th Nivel
-                  th Editar
-                      
-                    
+              table.responstable.tablastock 
             .row-fluid
             //
             //
@@ -96,12 +87,66 @@ html(lang='en')
             .row-fluid
             .span8
               table.responstable.tablaproveedor
-                tr  
-                  th Nombre 
-                  th Descripción 
-                  th Telefonp
-                  th Editar
-          
+            .row-fluid
+            //
+            //
+            //
+          #verventa.anchor
+          .section
+            .row-fluid
+            .span3
+              select#selectyear(name='selectventas-year')
+                option(value=0,selected) Seleccione un año
+                option(value=2015) 2015
+                option(value=2016) 2016
+            .span3
+              select#selectmonth(name='selectventas-month')
+                option(value=0,selected) Seleccione un mes
+                option(value=1) Enero
+                option(value=2) Febrero
+                option(value=3) Marzo
+                option(value=4) Abril
+                option(value=5) Mayo
+                option(value=6) Junio
+                option(value=7) Julio
+                option(value=8) Agosto
+                option(value=9) Septiembre
+                option(value=10) Octubre
+                option(value=11) Noviembre
+                option(value=12) Diciembre    
+
+            .row-fluid
+            .span4
+              table.responstable.tablaventa01
+                tr
+                  th Venta Total Mes
+                tr
+                  td.ventatotalmes.emptyAll           
+            .span4
+              table.responstable.tablaventa02
+                tr
+                  th Clientes totales
+                  th Clientes promedio por día
+                tr
+                  td.clientestotales.emptyAll 
+                  td.clientestotalespordia.emptyAll
+            .row-fluid
+            .span4              
+              table.responstable.tablaventa03
+                tr
+                  th Más vendido
+                  th Cantidad
+                tr
+                  td.masvendido.emptyAll 
+                  td.masvendido-cantidad.emptyAll            
+            .span6
+              table.responstable.tablaventa04
+                tr
+                  th(colspan=3) Ventas por día
+                tr
+                  td.ventaspordia-dia.emptyAll 
+                  td.ventaspordia-cantidad.emptyAll
+                  td.ventaspordia-monto.emptyAll       
       hr
       footer
         p © PartyBand 2016
