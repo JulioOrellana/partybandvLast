@@ -55,4 +55,15 @@ router.get('/obtenerTodo',function(req,res,next)
             }) 
 })
 
+router.get('/obtenerProveedores',function(req,res,next)
+{
+    locatarioController.getAllProveedores()
+            .then(data =>{
+                res.status(200)
+                    .json({
+                            proveedores : data
+                          })
+            }) 
+})
+
 module.exports = router

@@ -46,7 +46,7 @@ html(lang='en')
               li
                 a.clickverstock(href='http://localhost:3000/locatario/#verstock') Stock           
               li
-                a.clickverproveedores(href='#') Proveedores
+                a.clickverproveedores(href='http://localhost:3000/locatario/#verproveedor') Proveedores
               li
                 a.clickverventas(href='#') Ver Ventas
         .span9
@@ -84,10 +84,23 @@ html(lang='en')
                   th Valor 
                   th Stock
                   th Nivel
+                  th Editar
                       
                     
             .row-fluid
-            
+            //
+            //
+            //
+          #verproveedor.anchor
+          .section
+            .row-fluid
+            .span8
+              table.responstable.tablaproveedor
+                tr  
+                  th Nombre 
+                  th Descripción 
+                  th Telefonp
+                  th Editar
           
       hr
       footer
