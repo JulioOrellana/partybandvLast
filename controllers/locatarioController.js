@@ -25,7 +25,7 @@ exports.getAllSales = function getAllSales(month,year)
         return t.batch([
             //Entrega las ventas totales del mes especificado
             t.one(` select
-                        SUM(monto) as suma
+                        SUM(monto*cantidad) as suma
                     from orden
                     where EXTRACT(MONTH from fecha) = $1 AND EXTRACT(YEAR from fecha)=$2;`,[month,year]),
             //Entrega el número de clientes totales
@@ -45,7 +45,15 @@ exports.getAllSales = function getAllSales(month,year)
                     from orden
                     where EXTRACT(MONTH from fecha) = $1 AND EXTRACT(YEAR from fecha) = $2
                     group by producto
-                    order by 2 DESC;`,[month,year])
+                    order by 2 DESC;`,[month,year]),
+            //Entrega las ventas por día
+            t.any(` select 
+                    sum((monto*cantidad)) as total, 
+                    date_part('day', fecha) as fecha,
+                    sum(cantidad) as cantidad
+                    from orden
+                    where EXTRACT(MONTH from fecha) = $1 AND EXTRACT(YEAR from fecha) = $2
+                    group by fecha;`,[month,year])
         ]).catch(err=>{
             console.log('error en locatarioController en db.task!: '+err)
             return 0

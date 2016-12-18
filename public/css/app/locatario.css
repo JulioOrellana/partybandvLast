@@ -121,4 +121,8 @@ table.responstable#tablaventameses > th :hover{
 
 }
 
+#selectyear,#selectmonth{
+  width: 110px;
+}
+
 
